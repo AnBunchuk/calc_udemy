@@ -8,7 +8,7 @@ const App = (props) => {
   const [valApi, setValApi] = useState([])
 
   const [currency, setCurrency] = useState([])
-  const [eur, setEur] = useState(1)
+
 
   const currencyAPI = async () => {
     fetch("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json")
@@ -23,11 +23,16 @@ const App = (props) => {
     currencyAPI()
   }, [])
 
+useEffect(()=>{
+  document.title=`курс ${currency}`
+},[currency])
+
   const cur = (nameCurrency) => {
     let res = valApi.filter(item => item.cc === nameCurrency)
     console.log(res)
     setCount((props.counter / res[0].rate).toFixed(2))
     setCurrency(res[0].cc)
+
   }
 
 
