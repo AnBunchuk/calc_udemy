@@ -4,7 +4,7 @@ import './App.css'
 
 const App = (props) => {
 
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState()
   const [valApi, setValApi] = useState([])
 
   const [currency, setCurrency] = useState([])
@@ -23,10 +23,10 @@ const App = (props) => {
     currencyAPI()
   }, [])
 
-useEffect(()=>{
-  console.log("effect2")
-  document.title=`курс ${currency}`
-},[currency])
+  useEffect(() => {
+    console.log("effect2")
+    document.title = `курс ${currency}`
+  }, [currency])
 
   const cur = (nameCurrency) => {
     let res = valApi.filter(item => item.cc === nameCurrency)
@@ -36,23 +36,23 @@ useEffect(()=>{
   }
 
 
-  const GRN = () => {
-    setCount(props.counter)
-    setCurrency("GRN")
+  const reset = () => {
+    setCount('')
+    setCurrency('')
   }
 
   return (
     <div className="app">
       <div className='futer'>
-        <div className="counter">{props.counter} <br/><span> GRN </span></div>
-        <div className="counter">{count} <span> <br/> {currency}</span></div>
+        <div className="counter">{props.counter} <br /><span> UAH </span></div>
+        <div className="counter">{count} <span> <br /> {currency}</span></div>
       </div>
 
       <div className="controls">
         <button onClick={() => cur('USD')}>USD</button>
         <button onClick={() => cur('EUR')}>EUR</button>
         <button onClick={() => cur('RUB')}>RUB</button>
-        <button onClick={GRN}>GRN</button>
+        <button onClick={reset}>RESET</button>
       </div>
     </div>
   )
