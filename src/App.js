@@ -24,12 +24,12 @@ const App = (props) => {
   }, [])
 
 useEffect(()=>{
+  console.log("effect2")
   document.title=`курс ${currency}`
 },[currency])
 
   const cur = (nameCurrency) => {
     let res = valApi.filter(item => item.cc === nameCurrency)
-    console.log(res)
     setCount((props.counter / res[0].rate).toFixed(2))
     setCurrency(res[0].cc)
 
@@ -37,7 +37,6 @@ useEffect(()=>{
 
 
   const GRN = () => {
-    console.log('grivna')
     setCount(props.counter)
     setCurrency("GRN")
   }
